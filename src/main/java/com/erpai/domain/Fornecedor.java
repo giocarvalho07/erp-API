@@ -48,6 +48,9 @@ public class Fornecedor implements Serializable {
         this.tipo_fornecedor = tipo_fornecedor;
     }
 
+    public Fornecedor(long l, String fornecedor_a, String s, String s1) {
+    }
+
     public Long getId_fornecedor() {
         return id_fornecedor;
     }
@@ -106,5 +109,9 @@ public class Fornecedor implements Serializable {
                 ", cpf_cnpj='" + cpf_cnpj + '\'' +
                 ", tipo_fornecedor=" + tipo_fornecedor +
                 '}';
+    }
+
+    public short getId() {
+        return 0;
     }
 }

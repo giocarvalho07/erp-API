@@ -1,0 +1,15 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  bypass:
+    name: All Steps
+    runs-on: ubuntu-latest
+    steps:
+      - name: New steps
+        run: echo "All steps are bypassed."

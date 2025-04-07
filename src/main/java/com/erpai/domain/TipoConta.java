@@ -80,4 +80,12 @@ public class TipoConta implements Serializable {
                 ", contaReceber=" + contaReceber +
                 '}';
     }
+
+    public short getId() {
+        return 0;
+    }
+
+    public short getNome() {
+        return 0;
+    }
 }

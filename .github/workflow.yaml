@@ -1,13 +1,14 @@
 name: Continuous Integration
 
 on:
+  push:
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "master" ] # ou a branch principal do seu projeto
+    branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -16,7 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'temurin' # Distribuição da JDK a ser usada
+          distribution: 'temurin'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
@@ -26,19 +27,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build with Maven
-        run: mvn clean install -DskipTests # Compila e executa os testes (remova -DskipTests para executar os testes)
-
-      - name: Build Docker Image
-        run: |
-          docker build -t erp-ai-image .
-
-      # Exemplo de como fazer push da imagem para o Docker Hub (opcional)
-      # Você precisará configurar segredos no GitHub para DOCKERHUB_USERNAME e DOCKERHUB_TOKEN
-      # - name: Log in to Docker Hub
-      #   run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
-      #
-      # - name: Push Docker Image to Docker Hub
-      #   run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/erp-ai-image:latest
-
-      # Adicione aqui outros passos que você possa precisar, como análise de código estático, testes de integração, etc.
+      - name: Build and Test with Maven
+        run: mvn clean install -B

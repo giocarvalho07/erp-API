@@ -27,26 +27,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Maven Build
-        run: mvn build -B
-
-      - name: Maven Clean Install
+      - name: Build and Test with Maven
         run: mvn clean install -B
-
-      - name: Maven Test
-        run: mvn test -B
-
-      - name: Maven Run (Background) and Wait
-        run: |
-          mvn spring-boot:run &
-          sleep 15 # Adjust sleep time as needed for your application to start
-
-      - name: Check if App is Running (Optional)
-        run: |
-          curl http://localhost:8080 # Assuming your app runs on port 8080
-          if [ $? -eq 0 ]; then
-            echo "Application is running successfully!"
-          else
-            echo "Failed to connect to the application."
-            exit 1
-          fi

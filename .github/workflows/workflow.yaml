@@ -1,4 +1,4 @@
-name: Continuous Integration (Bypass All)
+name: Continuous Integration
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
 
 jobs:
   bypass:
-    name: Bypass All Steps
+    name: All Steps
     runs-on: ubuntu-latest
     steps:
-      - name: Bypass
+      - name: New steps
         run: echo "All steps are bypassed."
